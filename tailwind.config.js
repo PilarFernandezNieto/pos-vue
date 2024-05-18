@@ -2,11 +2,17 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/+.{vue,js,ts,jsx,tsx}"
+    "./src/**/*.{vue,js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        '9/10': '90%', // Añade la clase personalizada
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/forms")
+  ],
 }
 
