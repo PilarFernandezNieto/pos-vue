@@ -14,9 +14,12 @@ export const useProductsStore = defineStore("products", () => {
     ]
 
     const q = query(
-        collection(db, "products")
+        collection(db, "products"),
+        where("category", "==", 1)
     )
-    const productsCollection = useCollection(  q)
+
+    const productsCollection = useCollection(q)
+
     async function createProduct(product){
        await addDoc(collection(db, "products"), product)
     }
@@ -32,10 +35,13 @@ export const useProductsStore = defineStore("products", () => {
         return options
     })
 
+    const noResults = computed(() => productsCollection.value.length == 0)
+
 
 
     return {
         createProduct,
+        noResults,
         productsCollection,
         categoryOptions
     }
