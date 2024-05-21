@@ -13,7 +13,7 @@ const products = useProductsStore()
     <div>
         <Link to="new-product">Nuevo Producto</Link>
         <h1 class="text-4xl font-black my-10">Productos</h1>
-        
+
         <!-- SI NO HAY RESULTADOS -->
         <p v-if="products.noResults">No hay resultados</p>
 
