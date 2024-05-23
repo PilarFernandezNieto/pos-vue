@@ -19,12 +19,33 @@ export const useCartStore = defineStore("cart", () => {
         total.value = subtotal.value + taxes.value
     })
     function addItem(item){
-        items.value.push({...item, quantity: 1, id: item.id})
+        const index = isItemInCart(item.id);
+
+        if(index >= 0){
+            if(isProductAvailable(item, index)){
+                alert("Has alcanzado el límite")
+                return
+            }
+            items.value[index].quantity++;
+           
+        } else  {
+            items.value.push({...item, quantity: 1, id: item.id})
+        }
+       
     }
 
     function updateQuantity(id, quantity){
         items.value = items.value.map(item => item.id === id ? {...item, quantity} : item)
 
+    }
+
+    function removeItem(id){
+       items.value = items.value.filter(item => item.id !== id)
+    }
+
+    const isItemInCart = (id) => items.value.findIndex(item => item.id === id);
+    const isProductAvailable = (item, index) => {
+        return items.value[index].quantity >= item.availability || items.value[index].quantity >= MAX_PRODUCTS
     }
 
 
@@ -41,6 +62,7 @@ export const useCartStore = defineStore("cart", () => {
         taxes,
         total,
         addItem,
+        removeItem,
         isEmpty,
         checkProductAvailability,
         updateQuantity
