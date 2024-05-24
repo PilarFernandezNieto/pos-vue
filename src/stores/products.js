@@ -75,7 +75,9 @@ export const useProductsStore = defineStore("products", () => {
   const noResults = computed(() => productsCollection.value.length == 0);
 
   const filteredProducts = computed(() => {
-    return productsCollection.value.filter(product => product.category === selectCategory.value)
+    return productsCollection.value
+      .filter(product => product.category === selectCategory.value)
+      .filter(product => product.availability > 0)
   })
 
   return {
