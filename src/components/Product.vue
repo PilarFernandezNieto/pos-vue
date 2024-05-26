@@ -16,7 +16,7 @@ const isProductNotAvailable = computed(() => props.product.availability === 0)
 
 
 <template>
-    <li :class="{'opacity-30' : isProductNotAvailable}" class="flex items-center space-x-6 border-gray-200 p-6 bg-white shadow">
+    <li :class="{'opacity-40' : isProductNotAvailable}" class="flex items-center space-x-6 border-gray-200 p-6 bg-white shadow">
         <img class="h-24 w-24" :src="product.image" :alt="product.name">
         <div class="space-y-2 flex-auto">
             <h3 class="text-gray-900">{{ product.name }}</h3>

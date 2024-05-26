@@ -29,7 +29,7 @@ export const useProductsStore = defineStore("products", () => {
 
   const q = query(collection(db, "products"), orderBy("availability", "asc"));
 
-  const productsCollection = useCollection(q);
+  const productsCollection = useCollection(q); 
 
   async function createProduct(product) {
     await addDoc(collection(db, "products"), product);
